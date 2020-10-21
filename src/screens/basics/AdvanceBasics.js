@@ -8,7 +8,7 @@ export class AdvanceBasics extends React.Component {
       <View
         style={{
           flex: 1,
-          backgroundColor: '#aaf',
+          // backgroundColor: '#aaf',
         }}>
         {/* header */}
         <View
@@ -97,6 +97,75 @@ export class AdvanceBasics extends React.Component {
               }}>
               Left
             </Text>
+          </View>
+        </View>
+
+        <View
+          style={{
+            height: '20%',
+            width: '100%',
+            // backgroundColor: '#faf',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <View
+            style={{
+              height: '90%',
+              width: '95%',
+              // backgroundColor: '#fff',
+              alignItems: 'center',
+              justifyContent: 'center',
+              // borderColor: 'red',
+              // borderWidth: 2,
+
+              borderBottomColor: 'red',
+              borderBottomWidth: 2,
+
+              borderTopColor: 'blue',
+              borderTopWidth: 2,
+
+              borderLeftColor: 'yellow',
+              borderLeftWidth: 2,
+
+              borderRightColor: 'green',
+              borderRightWidth: 2,
+            }}>
+            <Text>Test</Text>
+          </View>
+        </View>
+
+        <View
+          style={{
+            height: '20%',
+            width: '100%',
+            backgroundColor: '#faf',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <View
+            style={{
+              height: '90%',
+              width: '95%',
+              backgroundColor: '#fff',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 20,
+            }}>
+            <View
+              style={{
+                height: 100,
+                width: 100,
+                backgroundColor: '#faf',
+                alignItems: 'center',
+                justifyContent: 'center',
+                // borderRadius: 50,
+                borderTopLeftRadius: 20,
+                borderBottomRightRadius: 20,
+                // borderTopRightRadius: 20,
+                // borderBottomLeftRadius: 20,
+              }}>
+              <Text>Test</Text>
+            </View>
           </View>
         </View>
       </View>
