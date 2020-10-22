@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity, Alert} from 'react-native';
 
 export class AdvanceBasics extends React.Component {
   render() {
@@ -167,6 +167,37 @@ export class AdvanceBasics extends React.Component {
               <Text>Test</Text>
             </View>
           </View>
+        </View>
+
+        <View
+          style={{
+            height: '15%',
+            backgroundColor: '#aada',
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              console.warn('ok');
+            }}
+            style={{
+              backgroundColor: '#faf',
+              padding: 10,
+            }}>
+            <Text>Button 1</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              alert('ok');
+            }}
+            style={{
+              backgroundColor: '#faf',
+              padding: 10,
+            }}>
+            <Text>Button 1</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
