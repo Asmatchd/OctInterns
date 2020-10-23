@@ -1,8 +1,9 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import {Basics, AdvanceBasics} from './src/screens/basics';
+import {ScreenNavigator} from './src/navigations/ScreenNavigator';
 
 const App = () => {
-  return <AdvanceBasics />;
+  return <ScreenNavigator />;
 };
 
 export default App;
