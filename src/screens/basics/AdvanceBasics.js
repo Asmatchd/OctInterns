@@ -179,7 +179,7 @@ export class AdvanceBasics extends React.Component {
           }}>
           <TouchableOpacity
             onPress={() => {
-              console.warn('ok');
+              this.props.navigation.navigate('Basics');
             }}
             style={{
               backgroundColor: '#faf',
@@ -196,7 +196,7 @@ export class AdvanceBasics extends React.Component {
               backgroundColor: '#faf',
               padding: 10,
             }}>
-            <Text>Button 1</Text>
+            <Text>Button 2</Text>
           </TouchableOpacity>
         </View>
       </View>
