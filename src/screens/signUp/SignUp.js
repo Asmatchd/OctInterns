@@ -4,10 +4,22 @@ import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 
 export class SignUp extends React.Component {
   state = {
-    name: '',
+    name: 'Study',
     fName: '',
     address: '',
     phone: '',
+  };
+
+  userData = () => {
+    const {name, fName, address, phone} = this.state;
+
+    const data = {
+      userName: name,
+      fatherName: fName,
+      userAddress: address,
+      userPhone: phone,
+    };
+    console.warn(data);
   };
 
   render() {
@@ -18,7 +30,7 @@ export class SignUp extends React.Component {
           backgroundColor: 'silver',
         }}>
         <TextInput
-          onChangeText={(txt) => this.setState({name: txt})}
+          onChangeText={(name) => this.setState({name})}
           style={{
             height: '10%',
             width: '100%',
@@ -30,9 +42,11 @@ export class SignUp extends React.Component {
           }}
           placeholder={'Name'}
           //   placeholderTextColor={'blue'}
+          value={this.state.name}
+          editable={false}
         />
         <TextInput
-          onChangeText={(txt) => this.setState({fName: txt})}
+          onChangeText={(fName) => this.setState({fName})}
           style={{
             height: '10%',
             width: '100%',
@@ -46,7 +60,7 @@ export class SignUp extends React.Component {
           //   placeholderTextColor={'blue'}
         />
         <TextInput
-          onChangeText={(txt) => this.setState({address: txt})}
+          onChangeText={(address) => this.setState({address})}
           style={{
             height: '10%',
             width: '100%',
@@ -58,9 +72,10 @@ export class SignUp extends React.Component {
           }}
           placeholder={'Address'}
           //   placeholderTextColor={'blue'}
+          keyboardType={'email-address'}
         />
         <TextInput
-          onChangeText={(txt) => this.setState({phone: txt})}
+          onChangeText={(phone) => this.setState({phone})}
           style={{
             height: '10%',
             width: '100%',
@@ -72,6 +87,7 @@ export class SignUp extends React.Component {
           }}
           placeholder={'Phone'}
           //   placeholderTextColor={'blue'}
+          keyboardType={'phone-pad'}
         />
 
         {/* Button */}
@@ -85,13 +101,7 @@ export class SignUp extends React.Component {
           }}>
           <TouchableOpacity
             onPress={() => {
-              const data = {
-                userName: this.state.name,
-                fatherName: this.state.fName,
-                userAddress: this.state.address,
-                userPhone: this.state.phone,
-              };
-              console.warn(data);
+              this.userData();
             }}
             style={{
               height: '50%',
