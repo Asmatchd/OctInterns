@@ -1,6 +1,15 @@
+/* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TouchableOpacity, TextInput} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Image,
+  ImageBackground,
+  SafeAreaView,
+} from 'react-native';
 
 import {
   widthPercentageToDP as w,
@@ -19,37 +28,76 @@ export class SignUp extends React.Component {
   userData = () => {
     const {name, fName, address, phone} = this.state;
 
-    const data = {
-      userName: name,
-      fatherName: fName,
-      userAddress: address,
-      userPhone: phone,
-    };
-    console.warn(data);
+    if (name === '' || fName === '' || address === '' || phone === '') {
+      alert('all fields are required');
+    } else {
+      const data = {
+        userName: name,
+        fatherName: fName,
+        userAddress: address,
+        userPhone: phone,
+      };
+      console.warn(data);
+    }
   };
 
   render() {
     return (
       <KeyboardAwareScrollView contentContainerStyle={{flexGrow: 2}}>
-        <View
+        <ImageBackground
+          source={require('../../assets/bg.jpg')}
+          resizeMode={'cover'}
           style={{
-            flex: 1,
+            height: h('96.5%'),
+            width: w('100%'),
             backgroundColor: 'rgba(0,0,0,0.05)',
             alignItems: 'center',
             // justifyContent: 'center',
           }}>
+          <SafeAreaView />
           <View
             style={{
               height: h('60%'),
               width: '90%',
-              backgroundColor: '#fff',
+              backgroundColor: '#fff4',
               alignItems: 'center',
-              justifyContent: 'center',
+              // justifyContent: 'center',
               marginTop: h('14%'),
               borderRadius: h('2%'),
-              borderColor: 'red',
+              borderColor: '#fff9',
               borderWidth: h('0.1%'),
             }}>
+            <View
+              style={{
+                height: h('15%'),
+                width: '100%',
+                // backgroundColor: '#faf',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              {/* https://images.agoramedia.com/wte3.0/gcms/Sleeping-Through-the-Night-722x406.jpg?width=414 */}
+              <TouchableOpacity
+                onPress={() => {
+                  console.warn('Img pressed');
+                }}>
+                <Image
+                  style={{
+                    height: h('13%'),
+                    width: h('13%'),
+                    // resizeMode: 'contain',
+                    borderRadius: h('8%'),
+                    overflow: 'hidden',
+                  }}
+                  // resizeMode={'contain'}
+                  source={require('../../assets/logo.jpg')}
+                  // source={{
+                  //   uri:
+                  //     'https://images.agoramedia.com/wte3.0/gcms/Sleeping-Through-the-Night-722x406.jpg?width=414',
+                  // }}
+                />
+              </TouchableOpacity>
+            </View>
+
             <TextInput
               onChangeText={(name) => this.setState({name})}
               style={{
@@ -125,6 +173,7 @@ export class SignUp extends React.Component {
                 marginTop: h('2%'),
               }}>
               <TouchableOpacity
+                // disabled={true}
                 onPress={() => {
                   this.userData();
                 }}
@@ -132,7 +181,7 @@ export class SignUp extends React.Component {
                   height: h('5%'),
                   width: '30%',
                   alignItems: 'center',
-                  backgroundColor: 'blue',
+                  backgroundColor: 'rgba(200, 12, 150, 1)',
                   justifyContent: 'center',
                   borderRadius: h('1%'),
                 }}>
@@ -146,7 +195,7 @@ export class SignUp extends React.Component {
               </TouchableOpacity>
             </View>
           </View>
-        </View>
+        </ImageBackground>
       </KeyboardAwareScrollView>
     );
   }
