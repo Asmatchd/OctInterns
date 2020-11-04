@@ -16,6 +16,7 @@ import {
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export class SignUp extends React.Component {
   state = {
@@ -55,6 +56,53 @@ export class SignUp extends React.Component {
             // justifyContent: 'center',
           }}>
           <SafeAreaView />
+
+          <View
+            style={{
+              backgroundColor: '#fff9',
+              height: h('7%'),
+              width: '100%',
+              flexDirection: 'row',
+            }}>
+            <TouchableOpacity
+              style={{
+                // backgroundColor: '#faf',
+                height: h('7%'),
+                width: '15%',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Ionicons name={'arrow-back'} size={h('4%')} color={'#000'} />
+            </TouchableOpacity>
+
+            <View
+              style={{
+                // backgroundColor: '#aaf',
+                height: h('7%'),
+                width: '70%',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text
+                style={{
+                  color: '#000',
+                  fontSize: h('3%'),
+                }}>
+                Sign Up
+              </Text>
+            </View>
+
+            <TouchableOpacity
+              style={{
+                // backgroundColor: '#faf',
+                height: h('7%'),
+                width: '15%',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Ionicons name={'options'} size={h('3.5%')} color={'#000'} />
+            </TouchableOpacity>
+          </View>
           <View
             style={{
               height: h('60%'),
@@ -62,7 +110,7 @@ export class SignUp extends React.Component {
               backgroundColor: '#fff4',
               alignItems: 'center',
               // justifyContent: 'center',
-              marginTop: h('14%'),
+              marginTop: h('10%'),
               borderRadius: h('2%'),
               borderColor: '#fff9',
               borderWidth: h('0.1%'),
@@ -181,17 +229,23 @@ export class SignUp extends React.Component {
                   height: h('5%'),
                   width: '30%',
                   alignItems: 'center',
-                  backgroundColor: 'rgba(200, 12, 150, 1)',
+                  // backgroundColor: 'rgba(200, 12, 150, 1)',
+                  backgroundColor: '#fff',
                   justifyContent: 'center',
                   borderRadius: h('1%'),
                 }}>
-                <Text
+                <Ionicons
+                  name={'checkmark-circle'}
+                  size={h('5%')}
+                  color={'rgba(200, 12, 150, 1)'}
+                />
+                {/* <Text
                   style={{
                     color: '#fff',
                     fontSize: h('3%'),
                   }}>
                   Sign Up
-                </Text>
+                </Text> */}
               </TouchableOpacity>
             </View>
           </View>
