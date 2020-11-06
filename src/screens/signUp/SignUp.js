@@ -33,12 +33,13 @@ export class SignUp extends React.Component {
       alert('all fields are required');
     } else {
       const data = {
-        userName: name,
-        fatherName: fName,
-        userAddress: address,
+        userName: name.toUpperCase(),
+        fatherName: fName.toUpperCase(),
+        userAddress: address.toLowerCase(),
         userPhone: phone,
       };
-      console.warn(data);
+      // console.warn(data);
+      this.props.navigation.navigate('Dashboard', {values: data});
     }
   };
 
@@ -194,6 +195,7 @@ export class SignUp extends React.Component {
               placeholder={'Address'}
               //   placeholderTextColor={'blue'}
               keyboardType={'email-address'}
+              autoCapitalize={'none'}
             />
             <TextInput
               onChangeText={(phone) => this.setState({phone})}
