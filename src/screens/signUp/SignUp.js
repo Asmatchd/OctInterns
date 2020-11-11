@@ -17,6 +17,7 @@ import {
 } from 'react-native-responsive-screen';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {AppBtn, AppInput} from '../../components';
 
 export class SignUp extends React.Component {
   state = {
@@ -109,7 +110,7 @@ export class SignUp extends React.Component {
               height: h('60%'),
               width: '90%',
               backgroundColor: '#fff4',
-              alignItems: 'center',
+              // alignItems: 'center',
               // justifyContent: 'center',
               marginTop: h('10%'),
               borderRadius: h('2%'),
@@ -147,109 +148,64 @@ export class SignUp extends React.Component {
               </TouchableOpacity>
             </View>
 
-            <TextInput
+            <AppInput
               onChangeText={(name) => this.setState({name})}
-              style={{
-                height: h('6%'),
-                width: '80%',
-                backgroundColor: '#fff',
-                color: 'red',
-                // textAlign: 'center',
-                borderWidth: h('0.1%'),
-                borderRadius: h('1%'),
-                marginBottom: h('1%'),
-                fontSize: h('2%'),
-              }}
-              placeholder={'Name'}
-              //   placeholderTextColor={'blue'}
               value={this.state.name}
               editable={false}
+              placeholder={'Name'}
             />
-            <TextInput
+            <View
+              style={{
+                height: h('1.5%'),
+              }}
+            />
+
+            <AppInput
               onChangeText={(fName) => this.setState({fName})}
-              style={{
-                height: h('6%'),
-                width: '80%',
-                backgroundColor: '#fff',
-                color: 'red',
-                // textAlign: 'center',
-                borderWidth: h('0.1%'),
-                borderRadius: h('1%'),
-                marginBottom: h('1%'),
-              }}
               placeholder={'Father Name'}
-              //   placeholderTextColor={'blue'}
             />
-            <TextInput
-              onChangeText={(address) => this.setState({address})}
+
+            <View
               style={{
-                height: h('6%'),
-                width: '80%',
-                backgroundColor: '#fff',
-                color: 'red',
-                // textAlign: 'center',
-                borderWidth: h('0.1%'),
-                borderRadius: h('1%'),
-                marginBottom: h('1%'),
+                height: h('1.5%'),
               }}
+            />
+
+            <AppInput
+              onChangeText={(address) => this.setState({address})}
               placeholder={'Address'}
               //   placeholderTextColor={'blue'}
               keyboardType={'email-address'}
               autoCapitalize={'none'}
             />
-            <TextInput
-              onChangeText={(phone) => this.setState({phone})}
+
+            <View
               style={{
-                height: h('6%'),
-                width: '80%',
-                backgroundColor: '#fff',
-                color: 'red',
-                // textAlign: 'center',
-                borderWidth: h('0.1%'),
-                borderRadius: h('1%'),
-                marginBottom: h('1%'),
+                height: h('1.5%'),
               }}
+            />
+
+            <AppInput
+              onChangeText={(phone) => this.setState({phone})}
               placeholder={'Phone'}
               //   placeholderTextColor={'blue'}
               keyboardType={'phone-pad'}
             />
 
-            {/* Button */}
-
             <View
               style={{
-                width: '100%',
-                alignItems: 'center',
-                marginTop: h('2%'),
-              }}>
-              <TouchableOpacity
-                // disabled={true}
-                onPress={() => {
-                  this.userData();
-                }}
-                style={{
-                  height: h('5%'),
-                  width: '30%',
-                  alignItems: 'center',
-                  // backgroundColor: 'rgba(200, 12, 150, 1)',
-                  backgroundColor: '#fff',
-                  justifyContent: 'center',
-                  borderRadius: h('1%'),
-                }}>
-                <Ionicons
-                  name={'checkmark-circle'}
-                  size={h('5%')}
-                  color={'rgba(200, 12, 150, 1)'}
-                />
-                {/* <Text
-                  style={{
-                    color: '#fff',
-                    fontSize: h('3%'),
-                  }}>
-                  Sign Up
-                </Text> */}
-              </TouchableOpacity>
-            </View>
+                height: h('1.5%'),
+              }}
+            />
+
+            {/* Button */}
+
+            <AppBtn
+              txt={'Sign Up'}
+              btnPressed={() => {
+                this.userData();
+              }}
+            />
           </View>
         </ImageBackground>
       </KeyboardAwareScrollView>
