@@ -16,6 +16,7 @@ import {
 } from 'react-native-responsive-screen';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {NavHeader} from '../../components/NavHeader';
 
 export class Dashboard extends React.Component {
   state = {
@@ -42,42 +43,13 @@ export class Dashboard extends React.Component {
           flex: 1,
         }}>
         <SafeAreaView />
-        {/* Nav Header */}
-        <View
-          style={{
-            backgroundColor: '#0006',
-            height: h('7%'),
-            width: '100%',
-            flexDirection: 'row',
-          }}>
-          <TouchableOpacity
-            style={{
-              // backgroundColor: '#faf',
-              height: h('7%'),
-              width: '15%',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Ionicons name={'options'} size={h('3.5%')} color={'#fff'} />
-          </TouchableOpacity>
-
-          <View
-            style={{
-              // backgroundColor: '#aaf',
-              height: h('7%'),
-              width: '70%',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#fff',
-                fontSize: h('3%'),
-              }}>
-              Dashboard
-            </Text>
-          </View>
-        </View>
+        <NavHeader
+          title={'Dashboard'}
+          leftIc={'options'}
+          leftIcPressed={() => this.props.navigation.goBack()}
+          rightIc={'information-circle'}
+          rightIcPressed={() => console.warn('Right')}
+        />
 
         {/* Name */}
         <View

@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, TouchableOpacity, Text} from 'react-native';
-
 import {
   widthPercentageToDP as w,
   heightPercentageToDP as h,

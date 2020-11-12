@@ -17,14 +17,14 @@ import {
 } from 'react-native-responsive-screen';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {AppBtn, AppInput} from '../../components';
+import {AppBtn, AppInput, NavHeader} from '../../components';
 
 export class SignUp extends React.Component {
   state = {
     name: 'Study',
     fName: '',
     address: '',
-    phone: '',
+    phone: '+92',
   };
 
   userData = () => {
@@ -33,14 +33,18 @@ export class SignUp extends React.Component {
     if (name === '' || fName === '' || address === '' || phone === '') {
       alert('all fields are required');
     } else {
-      const data = {
-        userName: name.toUpperCase(),
-        fatherName: fName.toUpperCase(),
-        userAddress: address.toLowerCase(),
-        userPhone: phone,
-      };
-      // console.warn(data);
-      this.props.navigation.navigate('Dashboard', {values: data});
+      if (phone.length < 13) {
+        alert('Invalid phone number');
+      } else {
+        const data = {
+          userName: name.toUpperCase(),
+          fatherName: fName.toUpperCase(),
+          userAddress: address.toLowerCase(),
+          userPhone: phone,
+        };
+        // console.warn(data);
+        this.props.navigation.navigate('Dashboard', {values: data});
+      }
     }
   };
 
@@ -59,52 +63,15 @@ export class SignUp extends React.Component {
           }}>
           <SafeAreaView />
 
-          <View
-            style={{
-              backgroundColor: '#fff9',
-              height: h('7%'),
-              width: '100%',
-              flexDirection: 'row',
-            }}>
-            <TouchableOpacity
-              style={{
-                // backgroundColor: '#faf',
-                height: h('7%'),
-                width: '15%',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Ionicons name={'arrow-back'} size={h('4%')} color={'#000'} />
-            </TouchableOpacity>
+          <NavHeader
+            title={'Sign Up'}
+            // leftIc={'options'}
+            // leftIcPressed={() => this.props.navigation.goBack()}
+            rightIc={'ios-arrow-forward'}
+            // rightIcPressed={() => this.props.navigation.navigate('Dashboard')}
+            rightIcPressed={() => this.userData()}
+          />
 
-            <View
-              style={{
-                // backgroundColor: '#aaf',
-                height: h('7%'),
-                width: '70%',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text
-                style={{
-                  color: '#000',
-                  fontSize: h('3%'),
-                }}>
-                Sign Up
-              </Text>
-            </View>
-
-            <TouchableOpacity
-              style={{
-                // backgroundColor: '#faf',
-                height: h('7%'),
-                width: '15%',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Ionicons name={'options'} size={h('3.5%')} color={'#000'} />
-            </TouchableOpacity>
-          </View>
           <View
             style={{
               height: h('60%'),
@@ -190,6 +157,8 @@ export class SignUp extends React.Component {
               placeholder={'Phone'}
               //   placeholderTextColor={'blue'}
               keyboardType={'phone-pad'}
+              value={this.state.phone}
+              maxLength={13}
             />
 
             <View
