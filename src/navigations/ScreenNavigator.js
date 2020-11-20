@@ -5,6 +5,7 @@ import {AdvanceBasics, Basics} from '../screens/basics';
 import {SignUp} from '../screens/signUp';
 import {Dashboard} from '../screens/dashboard';
 import {List} from '../screens/list';
+import {Splash} from '../screens/splash';
 
 const Stack = createStackNavigator();
 
@@ -13,10 +14,11 @@ export const ScreenNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="List"
-          component={List}
+          name="Splash"
+          component={Splash}
           options={{headerShown: false}}
         />
+
         <Stack.Screen
           name="SignUp"
           component={SignUp}
@@ -26,6 +28,12 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="List"
+          component={List}
           options={{headerShown: false}}
         />
 

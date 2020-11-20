@@ -8,6 +8,8 @@ import {
   Image,
   ImageBackground,
   SafeAreaView,
+  AsyncStorage,
+  Alert,
 } from 'react-native';
 
 import {
@@ -27,12 +29,36 @@ export class Dashboard extends React.Component {
   };
 
   componentDidMount = () => {
-    const navProps = this.props.route.params.values;
-    this.setState({
-      name: navProps.userName,
-      fName: navProps.fatherName,
-      address: navProps.userAddress,
-      phone: navProps.userPhone,
+    // const navProps = this.props.route.params.values;
+    // this.setState({
+    //   name: navProps.userName,
+    //   fName: navProps.fatherName,
+    //   address: navProps.userAddress,
+    //   phone: navProps.userPhone,
+    // });
+
+    this.retrieveData();
+  };
+
+  retrieveData = () => {
+    AsyncStorage.getItem('userData', (error, result) => {
+      if (!error && result !== null) {
+        const data = JSON.parse(result);
+        this.setState({
+          name: data.userName,
+          fName: data.fatherName,
+          address: data.userAddress,
+          phone: data.userPhone,
+        });
+      } else {
+        alert('Data not found');
+      }
+    });
+  };
+
+  logOut = () => {
+    AsyncStorage.removeItem('userData', () => {
+      this.props.navigation.replace('SignUp');
     });
   };
 
@@ -47,8 +73,22 @@ export class Dashboard extends React.Component {
           title={'Dashboard'}
           leftIc={'options'}
           leftIcPressed={() => this.props.navigation.goBack()}
-          rightIc={'information-circle'}
-          rightIcPressed={() => console.warn('Right')}
+          rightIc={'arrow-undo-outline'}
+          rightIcPressed={() => {
+            Alert.alert(
+              'Alert',
+              'Do you really want to logout?',
+              [
+                {
+                  text: 'No',
+                  onPress: () => console.log('Cancel Pressed'),
+                  style: 'cancel',
+                },
+                {text: 'Yes', onPress: () => this.logOut()},
+              ],
+              {cancelable: false},
+            );
+          }}
         />
 
         {/* Name */}
@@ -186,6 +226,30 @@ export class Dashboard extends React.Component {
               value={this.state.phone}
             />
           </View>
+        </View>
+
+        {/* Btn */}
+
+        <View
+          style={{
+            width: '100%',
+            alignItems: 'center',
+            marginTop: h('6%'),
+          }}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('List')}
+            style={{
+              backgroundColor: '#fff',
+              height: h('6%'),
+              width: '70%',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderWidth: h('0.1%'),
+              borderColor: 'red',
+              borderRadius: h('1%'),
+            }}>
+            <Text>Go to List screen</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

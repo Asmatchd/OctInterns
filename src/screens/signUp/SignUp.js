@@ -9,6 +9,7 @@ import {
   Image,
   ImageBackground,
   SafeAreaView,
+  AsyncStorage,
 } from 'react-native';
 
 import {
@@ -42,8 +43,11 @@ export class SignUp extends React.Component {
           userAddress: address.toLowerCase(),
           userPhone: phone,
         };
-        // console.warn(data);
-        this.props.navigation.navigate('Dashboard', {values: data});
+
+        AsyncStorage.setItem('userData', JSON.stringify(data), () => {
+          this.props.navigation.replace('Dashboard');
+        });
+        // this.props.navigation.navigate('Dashboard', {values: data});
       }
     }
   };

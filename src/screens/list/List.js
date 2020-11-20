@@ -201,7 +201,11 @@ export class List extends Component {
           flex: 1,
         }}>
         <SafeAreaView />
-        <NavHeader title={'Flat List'} />
+        <NavHeader
+          title={'Flat List'}
+          leftIc={'ios-arrow-back'}
+          leftIcPressed={() => this.props.navigation.goBack()}
+        />
         {/* <View
           style={{
             height: h('10%'),
