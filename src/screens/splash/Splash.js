@@ -17,7 +17,7 @@ export class Splash extends Component {
   retrieveData = () => {
     AsyncStorage.getItem('userData', (error, result) => {
       if (!error && result !== null) {
-        this.props.navigation.replace('Dashboard');
+        this.props.navigation.replace('DrawerNavigator');
       } else {
         this.props.navigation.replace('SignUp');
       }

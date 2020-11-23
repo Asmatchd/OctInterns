@@ -73,7 +73,7 @@ export class Dashboard extends React.Component {
         <NavHeader
           title={'Dashboard'}
           leftIc={'options'}
-          leftIcPressed={() => this.props.navigation.goBack()}
+          leftIcPressed={() => this.props.navigation.openDrawer()}
           rightIc={'arrow-undo-outline'}
           rightIcPressed={() => {
             Alert.alert(

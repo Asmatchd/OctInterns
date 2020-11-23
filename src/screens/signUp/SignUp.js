@@ -46,7 +46,7 @@ export class SignUp extends React.Component {
         };
 
         AsyncStorage.setItem('userData', JSON.stringify(data), () => {
-          this.props.navigation.replace('Dashboard');
+          this.props.navigation.replace('DrawerNavigator');
         });
         // this.props.navigation.navigate('Dashboard', {values: data});
       }
