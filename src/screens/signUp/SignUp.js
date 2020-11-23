@@ -10,6 +10,7 @@ import {
   ImageBackground,
   SafeAreaView,
   StatusBar,
+  Platform,
 } from 'react-native';
 
 import {
@@ -18,7 +19,7 @@ import {
 } from 'react-native-responsive-screen';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {AppBtn, AppInput, NavHeader} from '../../components';
+import {AppBtn, AppInput, Bar, NavHeader} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export class SignUp extends React.Component {
   state = {
@@ -65,7 +66,7 @@ export class SignUp extends React.Component {
             alignItems: 'center',
             // justifyContent: 'center',
           }}>
-          <SafeAreaView />
+          <Bar clr={'red'} />
 
           <NavHeader
             title={'Sign Up'}

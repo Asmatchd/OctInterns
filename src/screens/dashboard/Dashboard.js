@@ -19,6 +19,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {NavHeader} from '../../components/NavHeader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Bar} from '../../components';
 export class Dashboard extends React.Component {
   state = {
     name: '',
@@ -67,7 +68,8 @@ export class Dashboard extends React.Component {
         style={{
           flex: 1,
         }}>
-        <SafeAreaView />
+        <Bar clr={'blue'} />
+
         <NavHeader
           title={'Dashboard'}
           leftIc={'options'}
