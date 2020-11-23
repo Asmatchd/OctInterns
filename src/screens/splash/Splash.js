@@ -1,12 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Text, AsyncStorage} from 'react-native';
+import {View, Text} from 'react-native';
 
 import {
   widthPercentageToDP as w,
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export class Splash extends Component {
   componentDidMount = () => {
     setTimeout(() => {

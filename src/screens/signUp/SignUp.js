@@ -9,7 +9,7 @@ import {
   Image,
   ImageBackground,
   SafeAreaView,
-  AsyncStorage,
+  StatusBar,
 } from 'react-native';
 
 import {
@@ -19,7 +19,7 @@ import {
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {AppBtn, AppInput, NavHeader} from '../../components';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export class SignUp extends React.Component {
   state = {
     name: 'Study',
