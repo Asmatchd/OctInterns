@@ -56,12 +56,6 @@ export class Dashboard extends React.Component {
     });
   };
 
-  logOut = () => {
-    AsyncStorage.removeItem('userData', () => {
-      this.props.navigation.replace('SignUp');
-    });
-  };
-
   render() {
     return (
       <View
@@ -74,22 +68,6 @@ export class Dashboard extends React.Component {
           title={'Dashboard'}
           leftIc={'options'}
           leftIcPressed={() => this.props.navigation.openDrawer()}
-          rightIc={'arrow-undo-outline'}
-          rightIcPressed={() => {
-            Alert.alert(
-              'Alert',
-              'Do you really want to logout?',
-              [
-                {
-                  text: 'No',
-                  onPress: () => console.log('Cancel Pressed'),
-                  style: 'cancel',
-                },
-                {text: 'Yes', onPress: () => this.logOut()},
-              ],
-              {cancelable: false},
-            );
-          }}
         />
 
         {/* Name */}
