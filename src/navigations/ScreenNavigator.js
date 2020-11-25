@@ -7,6 +7,7 @@ import {Dashboard} from '../screens/dashboard';
 import {List} from '../screens/list';
 import {Splash} from '../screens/splash';
 import {DrawerNavigator} from './DrawerNavigator';
+import {TabNavigator} from './TabNavigator';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,11 @@ export const ScreenNavigator = () => {
           component={DrawerNavigator}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{headerShown: false}}
+        />
 
         <Stack.Screen
           name="Dashboard"
@@ -38,11 +44,11 @@ export const ScreenNavigator = () => {
           options={{headerShown: false}}
         />
 
-        <Stack.Screen
+        {/* <Stack.Screen
           name="List"
           component={List}
           options={{headerShown: false}}
-        />
+        /> */}
 
         <Stack.Screen
           name="AdvanceBasics"
