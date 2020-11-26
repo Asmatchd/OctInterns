@@ -24,28 +24,6 @@ export const TabNavigator = () => {
         },
       }}>
       <Tab.Screen
-        name="List"
-        component={List}
-        options={{
-          headerShown: false,
-          tabBarLabel: 'Home',
-          tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="home" color={color} size={30} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="List2"
-        component={List2}
-        options={{
-          headerShown: false,
-          tabBarLabel: 'List',
-          tabBarIcon: ({color, size}) => (
-            <Ionicons name="ios-options" color={color} size={30} />
-          ),
-        }}
-      />
-      {/* <Tab.Screen
         name="DrawerNavigator"
         component={DrawerNavigator}
         options={{
@@ -55,7 +33,29 @@ export const TabNavigator = () => {
             <MaterialCommunityIcons name="home" color={color} size={30} />
           ),
         }}
-      /> */}
+      />
+      <Tab.Screen
+        name="List"
+        component={List}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'List',
+          tabBarIcon: ({color, size}) => (
+            <Ionicons name="ios-person" color={color} size={30} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="List2"
+        component={List2}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'List2',
+          tabBarIcon: ({color, size}) => (
+            <Ionicons name="ios-options" color={color} size={30} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
