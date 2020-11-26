@@ -206,30 +206,6 @@ export class Dashboard extends React.Component {
             />
           </View>
         </View>
-
-        {/* Btn */}
-
-        <View
-          style={{
-            width: '100%',
-            alignItems: 'center',
-            marginTop: h('6%'),
-          }}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('TabNavigator')}
-            style={{
-              backgroundColor: '#fff',
-              height: h('6%'),
-              width: '70%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderWidth: h('0.1%'),
-              borderColor: 'red',
-              borderRadius: h('1%'),
-            }}>
-            <Text>Go to List screen</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     );
   }
