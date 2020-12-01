@@ -17,18 +17,22 @@ import {
 } from 'react-native-responsive-screen';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {NavHeader} from '../../components/NavHeader';
+import {ElementsNavHeader} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Bar} from '../../components';
+import moment from 'moment';
 export class Dashboard extends React.Component {
   state = {
     name: '',
     fName: '',
     address: '',
     phone: '',
+    date: moment().format('DD MMM YYYY'),
+    time: moment().format('hh:mm a'),
   };
 
   componentDidMount = () => {
+    // this.setState({date: moment().format('DD MMM YYYY')});
     // const navProps = this.props.route.params.values;
     // this.setState({
     //   name: navProps.userName,
@@ -64,9 +68,13 @@ export class Dashboard extends React.Component {
         }}>
         <Bar clr={'blue'} />
 
-        <NavHeader
+        <ElementsNavHeader
           title={'Dashboard'}
-          leftIc={'options'}
+          leftIc={'options-outline'}
+          leftIcType={'ionicon'}
+          // =======>
+          rightIcType={'octicons'}
+          rightIc={'person'}
           leftIcPressed={() => this.props.navigation.openDrawer()}
         />
 
@@ -204,6 +212,66 @@ export class Dashboard extends React.Component {
               keyboardType={'phone-pad'}
               value={this.state.phone}
             />
+          </View>
+        </View>
+
+        {/* Date */}
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            // backgroundColor: '#faf',
+            height: h('5%'),
+            flexDirection: 'row',
+          }}>
+          <View
+            style={{
+              width: '50%',
+              height: '100%',
+              //   backgroundColor: '#aaf',
+              justifyContent: 'center',
+              paddingLeft: h('5%'),
+            }}>
+            <Text>Date</Text>
+          </View>
+          <View
+            style={{
+              width: '50%',
+              height: '100%',
+              //   backgroundColor: '#faa',
+              justifyContent: 'center',
+            }}>
+            <Text>{this.state.date}</Text>
+          </View>
+        </View>
+
+        {/* TIme */}
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            // backgroundColor: '#faf',
+            height: h('5%'),
+            flexDirection: 'row',
+          }}>
+          <View
+            style={{
+              width: '50%',
+              height: '100%',
+              //   backgroundColor: '#aaf',
+              justifyContent: 'center',
+              paddingLeft: h('5%'),
+            }}>
+            <Text>Time</Text>
+          </View>
+          <View
+            style={{
+              width: '50%',
+              height: '100%',
+              //   backgroundColor: '#faa',
+              justifyContent: 'center',
+            }}>
+            <Text>{this.state.time}</Text>
           </View>
         </View>
       </View>
