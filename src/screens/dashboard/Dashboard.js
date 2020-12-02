@@ -9,6 +9,7 @@ import {
   ImageBackground,
   SafeAreaView,
   Alert,
+  Dimensions,
 } from 'react-native';
 
 import {
@@ -21,6 +22,10 @@ import {ElementsNavHeader} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Bar} from '../../components';
 import moment from 'moment';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 export class Dashboard extends React.Component {
   state = {
     name: '',
@@ -32,6 +37,8 @@ export class Dashboard extends React.Component {
   };
 
   componentDidMount = () => {
+    // console.warn('windowWidth = ' + windowWidth);
+    // console.warn('windowHeight = ' + windowHeight);
     // this.setState({date: moment().format('DD MMM YYYY')});
     // const navProps = this.props.route.params.values;
     // this.setState({

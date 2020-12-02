@@ -15,7 +15,7 @@ export const ScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Splash"
           component={Splash}
           options={{headerShown: false}}
@@ -25,7 +25,7 @@ export const ScreenNavigator = () => {
           name="SignUp"
           component={SignUp}
           options={{headerShown: false}}
-        /> */}
+        />
 
         {/* <Stack.Screen
           name="DrawerNavigator"

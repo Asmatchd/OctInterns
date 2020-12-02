@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {AppBtn, AppInput, Bar, NavHeader} from '../../components';
+import {AppBtn, AppInput, Bar, IcInput, NavHeader} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Loading} from '../../components';
 import {styles} from './styles';
@@ -22,6 +22,7 @@ export class SignUp extends React.Component {
     phone: '+92',
     isLoading: false,
     modalVisible: false,
+    secondModal: false,
 
     // SIgn In states
 
@@ -108,12 +109,20 @@ export class SignUp extends React.Component {
                 </TouchableOpacity>
               </View>
 
-              <AppInput
+              <IcInput
                 onChangeText={(name) => this.setState({name})}
                 value={this.state.name}
                 editable={false}
                 placeholder={'Name'}
+                ic={'ios-mail'}
               />
+
+              {/* <AppInput
+                onChangeText={(name) => this.setState({name})}
+                value={this.state.name}
+                editable={false}
+                placeholder={'Name'}
+              /> */}
               <View style={styles.spacer} />
 
               <AppInput
@@ -189,7 +198,9 @@ export class SignUp extends React.Component {
                 title={'Sign In'}
                 leftIc={'ios-arrow-back'}
                 leftIcPressed={() => {
-                  this.setState({modalVisible: false});
+                  this.setState({modalVisible: false}, () => {
+                    this.setState({secondModal: true});
+                  });
                 }}
               />
 
@@ -211,6 +222,7 @@ export class SignUp extends React.Component {
                     onChangeText={(userName) => this.setState({userName})}
                     placeholder={'User Name'}
                   />
+
                   <View style={styles.spacer} />
 
                   <AppInput
@@ -243,6 +255,34 @@ export class SignUp extends React.Component {
                   </View>
                 </View>
               </View>
+            </ImageBackground>
+          </KeyboardAwareScrollView>
+        </Modal>
+
+        {/*=======>>>>>>>     Second modal       <<<<<<<<<<============ */}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={this.state.secondModal}
+          onRequestClose={() => {
+            alert('Modal has been closed.');
+          }}>
+          <KeyboardAwareScrollView contentContainerStyle={styles.container}>
+            <ImageBackground
+              source={require('../../assets/signInBg.jpg')}
+              resizeMode={'cover'}
+              style={styles.imgBg}>
+              <Bar clr={'red'} />
+
+              <Loading showLoading={this.state.isLoading} />
+
+              <NavHeader
+                title={'Sign In'}
+                leftIc={'ios-arrow-back'}
+                leftIcPressed={() => {
+                  this.setState({secondModal: false});
+                }}
+              />
             </ImageBackground>
           </KeyboardAwareScrollView>
         </Modal>
