@@ -22,7 +22,7 @@ export class Loading extends Component {
               backgroundColor: '#faf7',
             }}>
             <ActivityIndicator size="large" color="red" />
-            <Text>Test</Text>
+            <Text>Please wait</Text>
           </View>
         ) : null}
       </View>

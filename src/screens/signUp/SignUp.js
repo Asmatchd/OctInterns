@@ -14,9 +14,10 @@ import {AppBtn, AppInput, Bar, IcInput, NavHeader} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Loading} from '../../components';
 import {styles} from './styles';
+import {axiosInstance, baseUrl} from '../../services/AxiosApi';
 export class SignUp extends React.Component {
   state = {
-    name: 'Study',
+    name: '',
     fName: '',
     address: '',
     phone: '+92',
@@ -50,14 +51,37 @@ export class SignUp extends React.Component {
         };
 
         setTimeout(() => {
-          AsyncStorage.setItem('userData', JSON.stringify(data), () => {
-            this.controlLoading(false);
-            this.props.navigation.replace('TabNavigator');
-          });
+          this.createUser(data);
         }, 2000);
+
+        // setTimeout(() => {
+        //   AsyncStorage.setItem('userData', JSON.stringify(data), () => {
+        //     this.controlLoading(false);
+        //     this.props.navigation.replace('TabNavigator');
+        //   });
+        // }, 2000);
         // this.props.navigation.navigate('Dashboard', {values: data});
       }
     }
+  };
+
+  createUser = (data) => {
+    axiosInstance
+      .post(baseUrl + 'users/signUp', data)
+      .then((res) => {
+        const user = res.data;
+        this.controlLoading(false);
+        if (user.status === '200') {
+          alert(user.msg);
+        } else if (user.status === '404') {
+          alert(user.msg);
+        }
+        // console.warn(res.data);
+      })
+      .catch((error) => {
+        this.controlLoading(false);
+        alert(error.message);
+      });
   };
 
   signIn = () => {
@@ -111,8 +135,7 @@ export class SignUp extends React.Component {
 
               <IcInput
                 onChangeText={(name) => this.setState({name})}
-                value={this.state.name}
-                editable={false}
+                // editable={false}
                 placeholder={'Name'}
                 ic={'ios-mail'}
               />
