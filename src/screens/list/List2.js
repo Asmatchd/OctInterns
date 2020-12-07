@@ -32,7 +32,7 @@ export class List2 extends Component {
   allUsers = () => {
     this.setState({refreshing: false});
     axiosInstance
-      .get(baseUrl + 'users/allUsers')
+      .post(baseUrl + 'users/allUsers')
       .then((res) => {
         const user = res.data;
         this.controlLoading(false);
