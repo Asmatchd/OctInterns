@@ -13,47 +13,40 @@ import {
   widthPercentageToDP as w,
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {NavHeader} from '../../components/NavHeader';
-
+import {axiosInstance, baseUrl} from '../../services/AxiosApi';
+import {Loading} from '../../components';
 export class List2 extends Component {
   state = {
-    data: [
-      {
-        name: 'AArslan 1',
-        age: '26',
-        clr: 'pink',
-        img: require('../../assets/4.jpeg'),
-      },
-      {
-        name: 'ANouman 2',
-        age: '27',
-        clr: 'red',
-        img: require('../../assets/5.jpeg'),
-      },
-      {
-        name: 'ATest class 3',
-        age: '28',
-        clr: 'orange',
-        img: require('../../assets/6.jpeg'),
-      },
-
-      {
-        name: 'Test class',
-        age: '24',
-        clr: 'black',
-        img: require('../../assets/1.png'),
-      },
-      {
-        name: 'Arslan 1',
-        age: '26',
-        clr: 'pink',
-        img: require('../../assets/1.png'),
-      },
-    ],
+    data: [],
     selectedItem: '',
     refreshing: false,
+    isLoading: false,
+  };
+
+  componentDidMount = () => {
+    this.controlLoading(true);
+    this.allUsers();
+  };
+
+  allUsers = () => {
+    this.setState({refreshing: false});
+    axiosInstance
+      .get(baseUrl + 'users/allUsers')
+      .then((res) => {
+        const user = res.data;
+        this.controlLoading(false);
+        if (user.status === '200') {
+          this.setState({data: user.allUsers});
+        } else if (user.status === '404') {
+          alert(user.msg);
+        }
+        // console.warn(res.data);
+      })
+      .catch((error) => {
+        this.controlLoading(false);
+        alert(error.message);
+      });
   };
 
   design = (item) => (
@@ -63,10 +56,10 @@ export class List2 extends Component {
       }}
       style={{
         height: h('12%'),
-        // backgroundColor: '#0008',
-        // backgroundColor: item.clr === undefined ? '#0008' : item.clr,
         backgroundColor:
-          item.name === this.state.selectedItem.name ? 'purple' : item.clr,
+          item.userName === this.state.selectedItem.userName
+            ? 'purple'
+            : '#fff',
         alignItems: 'center',
         justifyContent: 'center',
         // marginTop: h('1%'),
@@ -74,45 +67,36 @@ export class List2 extends Component {
       }}>
       <View
         style={{
-          width: '20%',
-          height: '100%',
-          // backgroundColor: '#faf',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Image
-          style={{
-            height: h('10%'),
-            width: h('10%'),
-            borderRadius: h('6%'),
-          }}
-          source={item.img}
-          resizeMode={'cover'}
-        />
-      </View>
-      <View
-        style={{
           width: '50%',
         }}>
         <Text
           style={{
             color:
-              item.name === this.state.selectedItem.name ? 'black' : '#fff',
+              item.userName === this.state.selectedItem.userName
+                ? '#fff'
+                : 'black',
             fontSize: h('2.5%'),
           }}>
           Name:{'   '}
-          {item.name}
+          {item.userName}
         </Text>
       </View>
 
       <View
         style={{
-          width: '30%',
+          width: '50%',
           alignItems: 'center',
         }}>
-        <Text style={{color: '#fff', fontSize: h('2.5%')}}>
-          Age:{'   '}
-          {item.age}
+        <Text
+          style={{
+            color:
+              item.userName === this.state.selectedItem.userName
+                ? '#fff'
+                : 'black',
+            fontSize: h('2.5%'),
+          }}>
+          Phone:{'   '}
+          {item.userPhone}
         </Text>
       </View>
     </TouchableOpacity>
@@ -144,13 +128,15 @@ export class List2 extends Component {
   );
 
   controlRefreshing = () => {
-    this.setState({refreshing: true});
+    this.setState({refreshing: true, isLoading: true}, () => {
+      setTimeout(() => {
+        this.componentDidMount();
+      }, 2000);
+    });
+  };
 
-    setTimeout(() => {
-      this.setState({refreshing: false}, () => {
-        console.warn('loading');
-      });
-    }, 5000);
+  controlLoading = (value) => {
+    this.setState({isLoading: value});
   };
 
   render() {
@@ -160,8 +146,11 @@ export class List2 extends Component {
           flex: 1,
         }}>
         <SafeAreaView />
+
+        <Loading showLoading={this.state.isLoading} />
+
         <NavHeader
-          title={'Flat List'}
+          title={'All Users'}
           leftIc={'ios-arrow-back'}
           leftIcPressed={() => this.props.navigation.goBack()}
         />
@@ -182,7 +171,7 @@ export class List2 extends Component {
         <FlatList
           data={this.state.data}
           renderItem={({item}) => this.design(item)}
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item) => item.userName}
           ItemSeparatorComponent={() => this.separator()}
           ListHeaderComponent={() => this.header()}
           refreshing={this.state.refreshing}

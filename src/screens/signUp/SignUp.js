@@ -73,6 +73,9 @@ export class SignUp extends React.Component {
         this.controlLoading(false);
         if (user.status === '200') {
           alert(user.msg);
+          AsyncStorage.setItem('userData', JSON.stringify(user.data), () => {
+            this.props.navigation.replace('TabNavigator');
+          });
         } else if (user.status === '404') {
           alert(user.msg);
         }
@@ -85,8 +88,29 @@ export class SignUp extends React.Component {
   };
 
   signIn = () => {
-    console.warn('User name is = ' + this.state.userName);
-    console.warn('User password is = ' + this.state.password);
+    this.controlLoading(true);
+    const data = {
+      userName: this.state.userName.toUpperCase(),
+      userPhone: this.state.password,
+    };
+    axiosInstance
+      .post(baseUrl + 'users/signIn', data)
+      .then((res) => {
+        const user = res.data;
+        this.controlLoading(false);
+        if (user.status === '200') {
+          AsyncStorage.setItem('userData', JSON.stringify(user.data), () => {
+            this.props.navigation.replace('TabNavigator');
+          });
+        } else if (user.status === '404') {
+          alert(user.msg);
+        }
+        // console.warn(res.data);
+      })
+      .catch((error) => {
+        this.controlLoading(false);
+        alert(error.message);
+      });
   };
 
   controlLoading = (value) => {
@@ -251,7 +275,7 @@ export class SignUp extends React.Component {
                   <AppInput
                     onChangeText={(password) => this.setState({password})}
                     placeholder={'Password'}
-                    secureTextEntry
+                    // secureTextEntry
                   />
 
                   <View style={styles.spacer} />
