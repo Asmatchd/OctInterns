@@ -69,15 +69,18 @@ export class SignUp extends React.Component {
     axiosInstance
       .post(baseUrl + 'users/signUp', data)
       .then((res) => {
-        const user = res.data;
         this.controlLoading(false);
-        if (user.status === '200') {
-          alert(user.msg);
-          AsyncStorage.setItem('userData', JSON.stringify(user.data), () => {
-            this.props.navigation.replace('TabNavigator');
-          });
-        } else if (user.status === '404') {
-          alert(user.msg);
+        if (res.data.status === '200') {
+          alert(res.data.msg);
+          AsyncStorage.setItem(
+            'userData',
+            JSON.stringify(res.data.data),
+            () => {
+              this.props.navigation.replace('TabNavigator');
+            },
+          );
+        } else if (res.data.status === '404') {
+          alert(res.data.msg);
         }
         // console.warn(res.data);
       })
@@ -96,14 +99,17 @@ export class SignUp extends React.Component {
     axiosInstance
       .post(baseUrl + 'users/signIn', data)
       .then((res) => {
-        const user = res.data;
         this.controlLoading(false);
-        if (user.status === '200') {
-          AsyncStorage.setItem('userData', JSON.stringify(user.data), () => {
-            this.props.navigation.replace('TabNavigator');
-          });
-        } else if (user.status === '404') {
-          alert(user.msg);
+        if (res.data.status === '200') {
+          AsyncStorage.setItem(
+            'userData',
+            JSON.stringify(res.data.data),
+            () => {
+              this.props.navigation.replace('TabNavigator');
+            },
+          );
+        } else if (res.data.status === '404') {
+          alert(res.data.msg);
         }
         // console.warn(res.data);
       })
