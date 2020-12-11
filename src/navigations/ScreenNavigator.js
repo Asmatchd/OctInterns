@@ -8,6 +8,7 @@ import {List} from '../screens/list';
 import {Splash} from '../screens/splash';
 import {DrawerNavigator} from './DrawerNavigator';
 import {TabNavigator} from './TabNavigator';
+import {LearnCalender} from '../screens/learnCalender';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,11 @@ export const ScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="LearnCalender"
+          component={LearnCalender}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Splash"
           component={Splash}
