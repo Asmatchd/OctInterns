@@ -19,6 +19,38 @@ export class LearnCalender extends React.Component {
   state = {
     date: '',
     dateSelected: false,
+
+    finalDates: {},
+    markedDates: ['2020-12-13', '2020-12-14', '2020-12-15', '2020-12-16'],
+  };
+
+  componentDidMount = () => {
+    this.mark();
+  };
+
+  mark = () => {
+    const nextDays = this.state.markedDates;
+
+    let newDaysObject = [];
+
+    nextDays.forEach((day) => {
+      newDaysObject = {
+        ...newDaysObject,
+        [day]: {
+          marked: true,
+        },
+      };
+    });
+
+    newDaysObject = {
+      ...newDaysObject,
+      [this.state.date]: {
+        selected: true,
+        marked: true,
+      },
+    };
+
+    this.setState({finalDates: newDaysObject}, () => {});
   };
 
   render() {
@@ -37,14 +69,20 @@ export class LearnCalender extends React.Component {
         <Calendar
           onDayPress={(day) => {
             // console.warn(moment(day.dateString).format('DD-MM-YYYY'));
-            this.setState({
-              date: day.dateString,
-              dateSelected: true,
-            });
+            this.setState(
+              {
+                date: day.dateString,
+                dateSelected: true,
+              },
+              () => {
+                this.mark(this.state.markedDates);
+              },
+            );
           }}
-          markedDates={{
-            [this.state.date]: {selected: true, marked: true},
-          }}
+          // markedDates={{
+          //   [this.state.date]: {selected: true, marked: true},
+          // }}
+          markedDates={this.state.finalDates}
           current={this.state.date}
           //   minDate={moment(new Date() - 1).format('YYYY-MM-DD')}
           theme={{
@@ -58,8 +96,8 @@ export class LearnCalender extends React.Component {
 
             dayTextColor: 'black',
             textDisabledColor: '#d9e1e8',
-            dotColor: '#fff',
-            selectedDotColor: 'white',
+            dotColor: 'red',
+            selectedDotColor: '#000',
             arrowColor: primaryColor,
             monthTextColor: secondaryColor,
             textDayFontSize: 14,
