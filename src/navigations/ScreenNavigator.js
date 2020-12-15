@@ -17,11 +17,10 @@ export const ScreenNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="TabNavigator"
-          component={TabNavigator}
+          name="List"
+          component={List}
           options={{headerShown: false}}
         />
-
         <Stack.Screen
           name="LearnCalender"
           component={LearnCalender}
@@ -44,23 +43,17 @@ export const ScreenNavigator = () => {
           component={DrawerNavigator}
           options={{headerShown: false}}
         /> */}
-        {/* <Stack.Screen
+        <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
           options={{headerShown: false}}
-        /> */}
+        />
 
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
           options={{headerShown: false}}
         />
-
-        {/* <Stack.Screen
-          name="List"
-          component={List}
-          options={{headerShown: false}}
-        /> */}
 
         <Stack.Screen
           name="AdvanceBasics"

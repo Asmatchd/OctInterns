@@ -97,10 +97,13 @@ export class List extends Component {
     refreshing: false,
   };
 
-  design = (item) => (
+  design = (item, index) => (
     <TouchableOpacity
       onPress={() => {
-        this.setState({selectedItem: item});
+        this.setState({selectedItem: item}, () => {
+          // this.removeByIndex(index);
+          this.searchAndRemove(item);
+        });
       }}
       style={{
         height: h('12%'),
@@ -159,6 +162,48 @@ export class List extends Component {
     </TouchableOpacity>
   );
 
+  removeByIndex = (index) => {
+    const arr = this.state.data;
+    arr.splice(index, 1);
+
+    this.setState({data: arr});
+
+    // console.warn(index);
+  };
+
+  searchAndRemove = (item) => {
+    const arr = this.state.data;
+
+    const index = arr.indexOf(item);
+    if (index === -1) {
+      console.warn('error');
+    } else {
+      arr.splice(index, 1);
+      this.setState({data: arr});
+    }
+    // console.warn(ind);
+    // arr.splice(index, 1);
+
+    // this.setState({data: arr});
+
+    // console.warn(index);
+  };
+
+  addByConcat = () => {
+    const mainArr = this.state.data;
+
+    const newItem = [
+      {
+        name: 'Learn Concat',
+        age: '100',
+        clr: 'red',
+      },
+    ];
+
+    const newArray = newItem.concat(mainArr);
+    this.setState({data: newArray});
+  };
+
   separator = () => (
     <View
       style={{
@@ -205,6 +250,8 @@ export class List extends Component {
           title={'Flat List'}
           leftIc={'ios-arrow-back'}
           leftIcPressed={() => this.props.navigation.goBack()}
+          rightIc={'ios-add'}
+          rightIcPressed={() => this.addByConcat()}
         />
         {/* <View
           style={{
@@ -222,7 +269,7 @@ export class List extends Component {
         </View> */}
         <FlatList
           data={this.state.data}
-          renderItem={({item}) => this.design(item)}
+          renderItem={({item, index}) => this.design(item, index)}
           keyExtractor={(item) => item.name}
           ItemSeparatorComponent={() => this.separator()}
           ListHeaderComponent={() => this.header()}
