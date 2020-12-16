@@ -102,7 +102,8 @@ export class List extends Component {
       onPress={() => {
         this.setState({selectedItem: item}, () => {
           // this.removeByIndex(index);
-          this.searchAndRemove(item);
+          // this.searchAndRemove(item);
+          this.incrementByPreviousState(item);
         });
       }}
       style={{
@@ -204,6 +205,41 @@ export class List extends Component {
     this.setState({data: newArray});
   };
 
+  addByPreviousState = () => {
+    const newItem = {
+      name: 'Previous State Added',
+      age: '100',
+      clr: 'red',
+    };
+
+    this.setState((previousState) => ({
+      data: [...previousState.data, newItem],
+    }));
+  };
+
+  incrementByPreviousState = (item) => {
+    const arr = this.state.data;
+    const index = arr.indexOf(item);
+
+    if (index === -1) {
+      console.warn('error');
+    } else {
+      const newItem = {
+        name: arr[index].name,
+        age: +arr[index].age + 2,
+        clr: arr[index].clr,
+        img: arr[index].img,
+      };
+
+      arr.splice(index, 1);
+      this.setState({data: arr}, () => {
+        this.setState((previousState) => ({
+          data: [...previousState.data, newItem],
+        }));
+      });
+    }
+  };
+
   separator = () => (
     <View
       style={{
@@ -251,7 +287,10 @@ export class List extends Component {
           leftIc={'ios-arrow-back'}
           leftIcPressed={() => this.props.navigation.goBack()}
           rightIc={'ios-add'}
-          rightIcPressed={() => this.addByConcat()}
+          rightIcPressed={() => {
+            // this.addByConcat();
+            this.addByPreviousState();
+          }}
         />
         {/* <View
           style={{
