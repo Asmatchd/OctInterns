@@ -3,36 +3,14 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Alert} from 'react-native';
 
 export class AdvanceBasics extends React.Component {
-  render() {
-    return (
-      <View
-        style={{
-          flex: 1,
-          // backgroundColor: '#aaf',
-        }}>
-        {/* header */}
-        <View
-          style={{
-            height: '5%',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#fff',
-          }}>
-          <Text
-            style={{
-              fontSize: 18,
-              color: '#000',
-              fontWeight: 'bold',
-            }}>
-            Advance Basics
-          </Text>
-        </View>
-        {/* top view */}
+  topView = () => {
+    if (2 > 1) {
+      return (
         <View
           style={{
             height: '20%',
             width: '100%',
-            backgroundColor: '#234',
+            backgroundColor: '#faf',
             flexDirection: 'row',
             // justifyContent: 'center',
             alignItems: 'center',
@@ -72,7 +50,38 @@ export class AdvanceBasics extends React.Component {
             </Text>
           </View>
         </View>
+      );
+    } else {
+      console.warn('false');
+    }
+  };
 
+  render() {
+    return (
+      <View
+        style={{
+          flex: 1,
+          // backgroundColor: '#aaf',
+        }}>
+        {/* header */}
+        <View
+          style={{
+            height: '5%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#fff',
+          }}>
+          <Text
+            style={{
+              fontSize: 18,
+              color: '#000',
+              fontWeight: 'bold',
+            }}>
+            Advance Basics
+          </Text>
+        </View>
+        {/* top view */}
+        {this.topView()}
         {/* center view */}
         <View
           style={{

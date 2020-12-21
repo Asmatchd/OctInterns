@@ -21,7 +21,7 @@ export class List extends Component {
   state = {
     data: [
       {
-        name: 'AArslan',
+        name: `${'AArslan'} ${'user'}`,
         age: '20',
         clr: 'blue',
         img: require('../../assets/1.png'),
@@ -95,15 +95,21 @@ export class List extends Component {
     ],
     selectedItem: '',
     refreshing: false,
+    user: '',
   };
 
-  design = (item, index) => (
+  componentDidMount = () => {
+    const name = `${'AArslan'} ${'Shafique'}`;
+    this.setState({user: name});
+  };
+
+  design = (element) => (
     <TouchableOpacity
       onPress={() => {
-        this.setState({selectedItem: item}, () => {
+        this.setState({selectedItem: element.item}, () => {
           // this.removeByIndex(index);
           // this.searchAndRemove(item);
-          this.incrementByPreviousState(item);
+          this.incrementByPreviousState(element.item);
         });
       }}
       style={{
@@ -111,7 +117,9 @@ export class List extends Component {
         // backgroundColor: '#0008',
         // backgroundColor: item.clr === undefined ? '#0008' : item.clr,
         backgroundColor:
-          item.name === this.state.selectedItem.name ? 'purple' : item.clr,
+          element.item.name === this.state.selectedItem.name
+            ? 'purple'
+            : element.item.clr,
         alignItems: 'center',
         justifyContent: 'center',
         // marginTop: h('1%'),
@@ -131,7 +139,7 @@ export class List extends Component {
             width: h('10%'),
             borderRadius: h('6%'),
           }}
-          source={item.img}
+          source={element.item.img}
           resizeMode={'cover'}
         />
       </View>
@@ -142,11 +150,13 @@ export class List extends Component {
         <Text
           style={{
             color:
-              item.name === this.state.selectedItem.name ? 'black' : '#fff',
+              element.item.name === this.state.selectedItem.name
+                ? 'black'
+                : '#fff',
             fontSize: h('2.5%'),
           }}>
           Name:{'   '}
-          {item.name}
+          {element.item.name}
         </Text>
       </View>
 
@@ -157,7 +167,7 @@ export class List extends Component {
         }}>
         <Text style={{color: '#fff', fontSize: h('2.5%')}}>
           Age:{'   '}
-          {item.age}
+          {element.item.age}
         </Text>
       </View>
     </TouchableOpacity>
@@ -292,6 +302,7 @@ export class List extends Component {
             this.addByPreviousState();
           }}
         />
+        <Text>{this.state.user}</Text>
         {/* <View
           style={{
             height: h('10%'),
@@ -308,7 +319,7 @@ export class List extends Component {
         </View> */}
         <FlatList
           data={this.state.data}
-          renderItem={({item, index}) => this.design(item, index)}
+          renderItem={(element) => this.design(element)}
           keyExtractor={(item) => item.name}
           ItemSeparatorComponent={() => this.separator()}
           ListHeaderComponent={() => this.header()}
