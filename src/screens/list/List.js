@@ -96,7 +96,6 @@ export class List extends Component {
     selectedItem: '',
     refreshing: false,
     user: '',
-    test,
   };
 
   componentDidMount = () => {
